@@ -1,0 +1,12 @@
+nginx
+build-essential
+uwsgi
+uwsgi-plugin-python3
+libpython3-dev
+gcc
+postgresql
+libpq-dev
+redis-server
+python3-venv
+libpng-dev
+libjpeg-dev

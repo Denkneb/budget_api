@@ -1,0 +1,6 @@
+/var/
+__pycache__
+
+\.idea/
+
+celerybeat-schedule
