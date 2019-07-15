@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_yasg',
     'user',
-    'core',
+    'common',
 ]
 
 MIDDLEWARE = [
@@ -180,3 +181,44 @@ CELERYBEAT_SCHEDULE = {
 # Request timeout
 # http://docs.python-requests.org/en/master/user/advanced/#timeouts
 REQUEST_TIMEOUT_SECONDS = 30
+
+
+NOTIFICATION_EVENT_CODES = (
+    ('password_reset', 'password_reset'),
+    ('password_reset_complete', 'password_reset_complete'),
+    ('invite', 'invite'),
+)
+
+EMAIL_TEMPLATES_DIR = os.path.join(BASE_DIR.parent, 'user', 'email_templates')
+
+# Check if email template files exist
+for (event, descr) in NOTIFICATION_EVENT_CODES:
+    for lang in [lang[0] for lang in LANGUAGES]:
+        directory = os.path.join(
+            EMAIL_TEMPLATES_DIR,
+            lang,
+            event
+        )
+        file_names = ('subject.txt', 'text.txt', 'html.html')
+        for f in file_names:
+            fpath = os.path.join(directory, f)
+            if not os.path.exists(fpath):
+                raise ImportError('{} does not exists'.format(fpath))
+
+# Mailgun API data
+MAILGUN_API_KEY = ''
+MAILGUN_DOMAIN = ''
+MAILGUN_API_URL = ''
+EMAIL_NOREPLY = 'noreply@budget.pro'
+EMAIL_JOB = 'job@budget.pro'
+
+# FireBase
+PUSH_TEMPLATES_DIR = os.path.join(BASE_DIR.parent, 'user', 'push_templates')
+
+PUSH_NOTIFICATION_EVENT_CODES = (
+    ('new_message', 'new_message'),
+)
+
+FIREBASE_URL_REQUEST = 'https://fcm.googleapis.com/fcm/send'
+FIREBASE_KEY_SERVER = ''
+

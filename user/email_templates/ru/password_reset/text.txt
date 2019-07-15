@@ -1,0 +1,4 @@
+Hello {{user.full_name}}.
+Код сброса пароля: {{data.code}}
+Ссылка для сброса пароля: http://budget.local/account/reset/{{data.hash_str}}/
+Письмо сгенерировано автоматически. Ответ на него получен не будет.

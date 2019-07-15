@@ -1,0 +1,4 @@
+Hello {{user.full_name}}.
+Reset code: {{data.code}}
+Password changed.
+Best regards, Administration.
